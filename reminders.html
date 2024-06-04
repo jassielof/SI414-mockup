@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Salon Booking System - Reminder Report</title>
+    <link rel="stylesheet" href="https://matcha.mizu.sh/matcha.css" />
+    <style>
+      /* Add any custom styles here, if needed */
+    </style>
+  </head>
+  <body>
+    <header></header>
+
+    <main>
+      <section id="reminders">
+        <h2>Reminder Report</h2>
+        <form id="reminders-form">
+          <div>
+            <label for="salon-name">Salon Name:</label>
+            <input type="text" id="salon-name" name="salon-name" required />
+          </div>
+          <div>
+            <label for="service">Preferred Service:</label>
+            <select id="service" name="service" required>
+              <option value="">Select Service</option>
+              <option value="haircut">Haircut</option>
+              <option value="coloring">Hair Coloring</option>
+              <option value="manicure">Manicure</option>
+              <option value="facial">Facial</option>
+            </select>
+          </div>
+          <div>
+            <label for="employee">Selected Employee:</label>
+            <select id="employee" name="employee" required>
+              <option value="">Select Employee</option>
+              <option value="stylist-1">Stylist 1</option>
+              <option value="stylist-2">Stylist 2</option>
+              <option value="beautician-1">Beautician 1</option>
+              <option value="beautician-2">Beautician 2</option>
+            </select>
+          </div>
+          <div>
+            <label for="appointment-date">Appointment Date:</label>
+            <input
+              type="date"
+              id="appointment-date"
+              name="appointment-date"
+              required
+            />
+          </div>
+          <div>
+            <label for="appointment-time">Appointment Time:</label>
+            <input
+              type="time"
+              id="appointment-time"
+              name="appointment-time"
+              required
+            />
+          </div>
+          <div>
+            <label for="appointment-notes">Appointment Notes:</label>
+            <textarea
+              id="appointment-notes"
+              name="appointment-notes"
+              rows="5"
+            ></textarea>
+          </div>
+          <button type="submit">Generate Reminders</button>
+        </form>
+      </section>
+    </main>
+
+    <footer></footer>
+
+    <script>
+      const remindersForm = document.getElementById("reminders-form");
+
+      remindersForm.addEventListener("submit", (event) => {
+        // Prevent default form submission (you'll need actual submission logic)
+        event.preventDefault();
+
+        // You can access the form data here using `remindersForm.elements`
+        // Implement logic to send the data to your server or store it locally
+        console.log("Submitted reminder data:", new FormData(remindersForm)); // Example for logging data
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Salon Booking System</title>
+    <link rel="stylesheet" href="https://matcha.mizu.sh/matcha.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <menu>
+          <a href="#" style="font-weight: bold; font-size: 1.2em">
+            <button>BellezaBook</button>
+          </a>
+          <a href="services.html"><button>Services</button> </a>
+          <a href="#salons">
+            <button>Salons</button>
+          </a>
+          <a href="#appointments"><button>My Appointments</button></a>
+          <a href="login.html"><button>Login</button></a>
+          <a href="review.html"><button>Review</button></a>
+          <a href="daily-dates-report.html"
+            ><button>Daily dates report</button></a
+          >
+          <a href="reminders.html"><button>Reminders</button></a>
+        </menu>
+      </nav>
+    </header>
+
+    <main>
+      <section id="hero">
+        <h1>Book Your Beauty Session</h1>
+        <p>Find and book appointments with top salons in your area.</p>
+        <form>
+          <input type="text" placeholder="Service (e.g., Haircut, Manicure)" />
+          <input type="text" placeholder="Location" />
+          <button type="submit">Search</button>
+        </form>
+      </section>
+
+      <section id="popular-services">
+        <h2>Popular Services</h2>
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+          "
+        >
+          <div>
+            <img src="img/haircut.png" alt="Haircut" style="width: 100%" />
+            <h3>Haircut</h3>
+            <p>Starting from $20</p>
+            <button>Book Now</button>
+          </div>
+          <div>
+            <img
+              src="img/hair-coloring.png"
+              alt="Hair Coloring"
+              style="width: 100%"
+            />
+            <h3>Hair Coloring</h3>
+            <p>Starting from $50</p>
+            <button>Book Now</button>
+          </div>
+          <div>
+            <img src="img/manicure.png" alt="Manicure" style="width: 100%" />
+            <h3>Manicure</h3>
+            <p>Starting from $15</p>
+            <button>Book Now</button>
+          </div>
+          <div>
+            <img src="img/facial.png" alt="Facial" style="width: 100%" />
+            <h3>Facial</h3>
+            <p>Starting from $40</p>
+            <button>Book Now</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="services">
+        <h2>Our Services</h2>
+        <ul id="service-list"></ul>
+      </section>
+
+      <section id="salons">
+        <h2>Top Salons</h2>
+        <div>
+          <article>
+            <img
+              src="img/salon-1.png"
+              alt="Salon 1"
+              style="float: left; margin-right: 1rem"
+            />
+            <h3>Glamour Glow Salon</h3>
+            <p>⭐️ 4.8 (250 reviews) • 2.3 miles away</p>
+            <p>Services: Haircut, Coloring, Styling, Manicure</p>
+            <button>View & Book</button>
+          </article>
+          <article>
+            <img
+              src="img/salon-2.png"
+              alt="Salon 2"
+              style="float: left; margin-right: 1rem"
+            />
+            <h3>Chic Cuts & Color</h3>
+            <p>⭐️ 4.6 (180 reviews) • 1.5 miles away</p>
+            <p>Services: Haircut, Coloring, Extensions, Beard Grooming</p>
+            <button>View & Book</button>
+          </article>
+        </div>
+      </section>
+
+      <section id="appointments">
+        <h2>My Upcoming Appointments</h2>
+        <div>
+          <article>
+            <h3>Haircut & Style</h3>
+            <p>📅 June 10, 2024 at 2:00 PM</p>
+            <p>🏠 Glamour Glow Salon</p>
+            <button>Reschedule</button>
+            <button>Cancel</button>
+          </article>
+          <article>
+            <h3>Manicure & Pedicure</h3>
+            <p>📅 June 15, 2024 at 11:00 AM</p>
+            <p>🏠 Nail Paradise</p>
+            <button>Reschedule</button>
+            <button>Cancel</button>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 BellezaBook. All rights reserved.</p>
+      <nav>
+        <button href="#">About</button>
+        <button href="#">Contact</button>
+        <button href="#">Privacy Policy</button>
+      </nav>
+    </footer>
+
+    <style></style>
+    <script>
+      const serviceList = document.getElementById("service-list");
+
+      function displayServices() {
+        // Get services from local storage
+        const services = JSON.parse(localStorage.getItem("services")) || [];
+
+        // Clear existing list items
+        serviceList.innerHTML = "";
+
+        if (services.length === 0) {
+          serviceList.innerHTML = "<p>No services found.</p>";
+        } else {
+          services.forEach((service) => {
+            const listItem = document.createElement("li");
+            listItem.innerHTML = `
+              <h3>${service.name}</h3>
+              <p>${service.description}</p>
+              <p>Category: ${service.category}</p>
+              <p>Price: $${service.price}</p>
+              <p>Estimated Duration: ${service.duration} minutes</p>
+              <p>Employees: ${service.employees.join(", ")}</p>
+            `;
+            serviceList.appendChild(listItem);
+          });
+        }
+      }
+
+      // Call displayServices on page load
+      displayServices();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Salon Booking System - Manage Services & Prices</title>
+    <link rel="stylesheet" href="https://matcha.mizu.sh/matcha.css" />
+    <style>
+      /* Add any custom styles here, if needed */
+    </style>
+  </head>
+  <body>
+    <header></header>
+
+    <main>
+      <section id="services">
+        <h2>Manage Services & Prices</h2>
+        <form id="services-form">
+          <div>
+            <label for="service-name">Service Name:</label>
+            <input type="text" id="service-name" name="service-name" required />
+          </div>
+          <div>
+            <label for="service-description">Service Description:</label>
+            <textarea
+              id="service-description"
+              name="service-description"
+              rows="5"
+              required
+            ></textarea>
+          </div>
+          <div>
+            <label for="service-category">Category:</label>
+            <select id="service-category" name="service-category" required>
+              <option value="">Select Category</option>
+              <option value="haircut">Haircut</option>
+              <option value="coloring">Hair Coloring</option>
+              <option value="styling">Styling</option>
+              <option value="nails">Nails</option>
+              <option value="facials">Facials</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div>
+            <label for="service-price">Price or Price Range:</label>
+            <input
+              type="number"
+              id="service-price"
+              name="service-price"
+              required
+            />
+          </div>
+          <div>
+            <label for="service-duration">Estimated Duration (minutes):</label>
+            <input
+              type="number"
+              id="service-duration"
+              name="service-duration"
+              required
+            />
+          </div>
+          <div>
+            <label for="service-employees">Employees:</label>
+            <select
+              multiple
+              id="service-employees"
+              name="service-employees"
+              required
+            >
+              <option value="stylist-1">Stylist 1</option>
+              <option value="stylist-2">Stylist 2</option>
+              <option value="beautician-1">Beautician 1</option>
+              <option value="beautician-2">Beautician 2</option>
+            </select>
+          </div>
+          <button type="submit">Save Service</button>
+        </form>
+      </section>
+    </main>
+
+    <footer></footer>
+
+    <script>
+      const servicesForm = document.getElementById("services-form");
+
+      servicesForm.addEventListener("submit", (event) => {
+        event.preventDefault(); // Prevent default form submission
+
+        // Get form data
+        const serviceData = {
+          name: document.getElementById("service-name").value,
+          description: document.getElementById("service-description").value,
+          category: document.getElementById("service-category").value,
+          price: document.getElementById("service-price").value,
+          duration: document.getElementById("service-duration").value,
+          employees: Array.from(
+            document.getElementById("service-employees").selectedOptions
+          ).map((option) => option.value),
+        };
+
+        // Access existing services from local storage
+        let services = JSON.parse(localStorage.getItem("services")) || [];
+
+        // Add new service data
+        services.push(serviceData);
+
+        // Save updated services to local storage
+        localStorage.setItem("services", JSON.stringify(services));
+
+        // Display success message (optional)
+        alert("Service saved successfully!");
+
+        // Clear form (optional)
+        servicesForm.reset();
+      });
+    </script>
+  </body>
+</html>
